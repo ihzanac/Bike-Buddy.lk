@@ -1,0 +1,461 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // Current user's profile (always use exists() before get() for clarity).
+    function callerProfile() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && callerProfile().data.role is string
+        && callerProfile().data.role == 'admin';
+    }
+
+    function isApprovedOwner() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && callerProfile().data.role == 'owner'
+        && callerProfile().data.ownerStatus == 'approved';
+    }
+
+    /** Admin Reports (`platformReports`) — shared create payload checks. */
+    function platformReportCore() {
+      return request.resource.data.reporter is string
+        && request.resource.data.phone is string
+        && request.resource.data.issue is string
+        && request.resource.data.shop is string
+        && request.resource.data.description is string
+        && request.resource.data.date is string
+        && request.resource.data.reporterUid is string
+        && request.resource.data.priority in ['critical', 'high', 'medium', 'low']
+        && request.resource.data.status in ['open', 'investigating', 'resolved', 'closed']
+        && request.resource.data.reporter.size() > 0
+        && request.resource.data.issue.size() > 0
+        && request.resource.data.shop.size() > 0
+        && request.resource.data.description.size() > 0
+        && request.resource.data.description.size() <= 8000
+        && request.resource.data.date.size() == 10
+        && (!request.resource.data.keys().hasAny(['targetOwnerUid'])
+          || (
+            request.resource.data.targetOwnerUid is string
+            && request.resource.data.targetOwnerUid.size() <= 128
+          ));
+    }
+
+    /** Only admins may set a non-empty shop-owner target (customer creates cannot forge routing). */
+    function platformReportCustomerHasNoShopTarget() {
+      return !request.resource.data.keys().hasAny(['targetOwnerUid'])
+        || request.resource.data.targetOwnerUid.size() == 0;
+    }
+
+    function saleShopCoreFieldsValid() {
+      return request.resource.data.keys().hasAll([
+        'name',
+        'owner',
+        'phone',
+        'email',
+        'district',
+        'city',
+        'address',
+        'listings',
+        'rating',
+        'status',
+        'established',
+      ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.owner is string
+        && request.resource.data.phone is string
+        && request.resource.data.email is string
+        && request.resource.data.district is string
+        && request.resource.data.city is string
+        && request.resource.data.address is string
+        && request.resource.data.listings is number
+        && request.resource.data.listings >= 0
+        && request.resource.data.listings < 1000000
+        && request.resource.data.rating is number
+        && request.resource.data.rating >= 0
+        && request.resource.data.rating <= 5
+        && request.resource.data.established is string
+        && request.resource.data.status is string
+        && (
+          request.resource.data.status == 'verified'
+          || request.resource.data.status == 'pending'
+        );
+    }
+
+    function partsShopCoreFieldsValid() {
+      return request.resource.data.keys().hasAll([
+        'name',
+        'owner',
+        'phone',
+        'email',
+        'district',
+        'city',
+        'address',
+        'parts',
+        'orders',
+        'revenueK',
+        'stockLevel',
+        'status',
+        'established',
+      ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.owner is string
+        && request.resource.data.phone is string
+        && request.resource.data.email is string
+        && request.resource.data.district is string
+        && request.resource.data.city is string
+        && request.resource.data.address is string
+        && request.resource.data.parts is number
+        && request.resource.data.parts >= 0
+        && request.resource.data.parts < 10000000
+        && request.resource.data.orders is number
+        && request.resource.data.orders >= 0
+        && request.resource.data.orders < 10000000
+        && request.resource.data.revenueK is number
+        && request.resource.data.revenueK >= 0
+        && request.resource.data.revenueK < 1000000000
+        && request.resource.data.established is string
+        && request.resource.data.stockLevel is string
+        && (
+          request.resource.data.stockLevel == 'high'
+          || request.resource.data.stockLevel == 'medium'
+          || request.resource.data.stockLevel == 'low'
+        )
+        && request.resource.data.status is string
+        && (
+          request.resource.data.status == 'active'
+          || request.resource.data.status == 'inactive'
+          || request.resource.data.status == 'pending'
+        );
+    }
+
+    match /users/{userId} {
+      // Inline admin check avoids oddities with helper recursion on some projects.
+      // Approved shop owners are readable by any signed-in user so customers can pick a shop for booking.
+      allow read: if signedIn()
+        && (
+          request.auth.uid == userId
+          || (
+            exists(/databases/$(database)/documents/users/$(request.auth.uid))
+            && callerProfile().data.role == 'admin'
+          )
+          || (
+            resource.data.role == 'owner'
+            && resource.data.ownerStatus == 'approved'
+          )
+        );
+
+      // Demo bootstrap: admin@bikehub.demo (npm run bootstrap:demo-users)
+      // Self-serve admin: must match `adminProvisioningCode` to the same string in the app
+      // (.env VITE_FIREBASE_ADMIN_PROVISIONING_KEY). Change both if you rotate the key.
+      // Admin may also create pending owner profiles (e.g. service shop) for another uid via Admin UI
+      // after Auth user is created on a secondary app instance.
+      allow create: if
+        (
+          signedIn()
+          && request.auth.uid == userId
+          && request.resource.data.email == request.auth.token.email
+          && (
+            (
+              request.resource.data.role == 'customer'
+            )
+            || (
+              request.resource.data.role == 'owner'
+              && request.resource.data.ownerStatus == 'pending'
+            )
+            || (
+              request.auth.token.email == 'admin@bikehub.demo'
+              && request.resource.data.role == 'admin'
+              && request.resource.data.email == 'admin@bikehub.demo'
+            )
+            || (
+              request.resource.data.role == 'admin'
+              && request.resource.data.keys().hasAll(['adminProvisioningCode', 'displayName', 'email', 'role'])
+              && request.resource.data.adminProvisioningCode == 'BIKEHUB_LOCAL_ADMIN_KEY_2024'
+              && (!request.resource.data.keys().hasAny(['ownerStatus']))
+            )
+          )
+        )
+        || (
+          isAdmin()
+          && request.resource.data.role == 'owner'
+          && request.resource.data.ownerStatus == 'pending'
+          && request.resource.data.email is string
+          && request.resource.data.displayName is string
+          && request.resource.data.shopName is string
+          && request.resource.data.shopAddress is string
+          && request.resource.data.phone is string
+          && request.resource.data.shopCategories is list
+          && request.resource.data.shopCategories.size() > 0
+        )
+        || (
+          isAdmin()
+          && request.resource.data.role == 'customer'
+          && request.resource.data.email is string
+          && request.resource.data.displayName is string
+          && (!request.resource.data.keys().hasAny(['ownerStatus']))
+        );
+
+      allow update: if isAdmin()
+        || (
+          signedIn()
+          && request.auth.uid == userId
+          && request.resource.data.role == resource.data.role
+          && (
+            (!request.resource.data.keys().hasAny(['ownerStatus'])
+              && !resource.data.keys().hasAny(['ownerStatus']))
+            || request.resource.data.ownerStatus == resource.data.ownerStatus
+          )
+        );
+
+      allow delete: if isAdmin();
+    }
+
+    // Owner notification dismissals (shop portal inbox); doc id = owner uid.
+    match /shopInboxState/{ownerId} {
+      allow read: if signedIn() && request.auth.uid == ownerId;
+
+      allow create: if signedIn()
+        && request.auth.uid == ownerId
+        && request.resource.data.ownerId == ownerId
+        && request.resource.data.dismissedKeys is list;
+
+      allow update: if signedIn()
+        && request.auth.uid == ownerId
+        && resource.data.ownerId == ownerId
+        && request.resource.data.ownerId == ownerId
+        && request.resource.data.dismissedKeys is list;
+    }
+
+    match /bikes/{bikeId} {
+      allow read: if true;
+      allow create: if isApprovedOwner() && request.resource.data.ownerId == request.auth.uid;
+      allow update, delete: if isAdmin()
+        || (isApprovedOwner() && resource.data.ownerId == request.auth.uid);
+    }
+
+    match /accessories/{accessoryId} {
+      allow read: if true;
+      allow create: if isApprovedOwner() && request.resource.data.ownerId == request.auth.uid;
+      allow update, delete: if isAdmin()
+        || (isApprovedOwner() && resource.data.ownerId == request.auth.uid);
+    }
+
+    match /services/{serviceId} {
+      allow read: if true;
+      allow create: if isApprovedOwner() && request.resource.data.ownerId == request.auth.uid;
+      allow update, delete: if isAdmin()
+        || (isApprovedOwner() && resource.data.ownerId == request.auth.uid);
+    }
+
+    // Spare-parts catalog per owner (customer browse + owner CRUD)
+    match /shopParts/{partId} {
+      allow read: if true;
+      allow create: if isApprovedOwner() && request.resource.data.ownerId == request.auth.uid;
+      allow update, delete: if isAdmin()
+        || (isApprovedOwner() && resource.data.ownerId == request.auth.uid);
+    }
+
+    // Bookings: `isAdmin()` reads `users/{auth.uid}` — that doc must exist and have `role == "admin"` (string).
+    // If admin UI loads but create/update is denied, published rules in Firebase Console are often older than this file — redeploy.
+    match /bookings/{bookingId} {
+      allow read: if signedIn()
+        && (
+          isAdmin()
+          || resource.data.customerId == request.auth.uid
+          || resource.data.ownerId == request.auth.uid
+        );
+
+      // Customer self-booking, or approved owner recording a walk-in
+      // (synthetic customerId: walkin__{ownerUid}__ + 32 lowercase hex — see src/utils/walkInBooking.ts).
+      // Admin UI "New booking" may set customerId to another user (support desk).
+      allow create: if signedIn()
+        && request.resource.data.status == 'pending'
+        && (
+          request.resource.data.customerId == request.auth.uid
+          || (
+            isApprovedOwner()
+            && request.resource.data.ownerId == request.auth.uid
+            && request.resource.data.customerId.matches(
+              '^walkin__' + request.auth.uid + '__[a-f0-9]{32}$'
+            )
+          )
+          || (
+            isAdmin()
+            && request.resource.data.customerId is string
+            && request.resource.data.customerId.size() > 0
+            && request.resource.data.ownerId is string
+            && request.resource.data.ownerId.size() > 0
+            && request.resource.data.serviceName is string
+            && request.resource.data.date is string
+            && request.resource.data.time is string
+            && request.resource.data.location is string
+          )
+        );
+
+      allow update: if isAdmin()
+        || (signedIn() && resource.data.ownerId == request.auth.uid);
+    }
+
+    // Bike sale directory: admin any doc id; approved owner may upsert only doc id == own uid.
+    match /saleShops/{shopId} {
+      // `resource` is unset when the doc id has no document — do not read `resource.data` unless it exists.
+      allow read: if isAdmin()
+        || (
+          exists(/databases/$(database)/documents/saleShops/$(shopId))
+          && resource.data.status == 'verified'
+        )
+        || (
+          exists(/databases/$(database)/documents/saleShops/$(shopId))
+          && signedIn()
+          && request.auth.uid == shopId
+          && resource.data.ownerId == request.auth.uid
+        )
+        || (
+          !exists(/databases/$(database)/documents/saleShops/$(shopId))
+          && isApprovedOwner()
+          && request.auth.uid == shopId
+        );
+
+      allow create: if saleShopCoreFieldsValid()
+        && request.resource.data.keys().hasAll(['createdAt'])
+        && (
+          (
+            isAdmin()
+            && (
+              !request.resource.data.keys().hasAny(['ownerId'])
+              || (
+                request.resource.data.ownerId is string
+                && request.resource.data.ownerId.size() > 0
+              )
+            )
+          )
+          || (
+            isApprovedOwner()
+            && shopId == request.auth.uid
+            && request.resource.data.keys().hasAll(['ownerId', 'createdAt'])
+            && request.resource.data.ownerId == request.auth.uid
+            && request.resource.data.status == 'pending'
+          )
+        );
+
+      // Owner may refresh fields; must not change verification status or reassign ownerId.
+      allow update: if isAdmin()
+        || (
+          isApprovedOwner()
+          && shopId == request.auth.uid
+          && resource.data.ownerId == request.auth.uid
+          && request.resource.data.ownerId == request.auth.uid
+          && saleShopCoreFieldsValid()
+          && request.resource.data.status == resource.data.status
+        );
+
+      allow delete: if isAdmin();
+    }
+
+    // Parts shop directory (admin-managed metadata for Admin → Parts Shops).
+    match /partsShops/{shopId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin()
+        && partsShopCoreFieldsValid()
+        && request.resource.data.keys().hasAll(['createdAt'])
+        && (
+          !request.resource.data.keys().hasAny(['ownerId'])
+          || (
+            request.resource.data.ownerId is string
+            && request.resource.data.ownerId.size() > 0
+          )
+        );
+      allow update: if isAdmin() && partsShopCoreFieldsValid();
+      allow delete: if isAdmin();
+    }
+
+    match /shopReviews/{reviewId} {
+      allow read: if signedIn()
+        && (
+          isAdmin()
+          || resource.data.ownerId == request.auth.uid
+          || resource.data.customerId == request.auth.uid
+        );
+
+      allow create: if signedIn()
+        && request.resource.data.ownerId is string
+        && request.resource.data.customerId is string
+        && request.resource.data.customerName is string
+        && request.resource.data.text is string
+        && request.resource.data.ownerId != request.auth.uid
+        && request.resource.data.customerId == request.auth.uid
+        && request.resource.data.rating is number
+        && request.resource.data.rating >= 1
+        && request.resource.data.rating <= 5
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 4000
+        && request.resource.data.keys().hasAll([
+          'ownerId',
+          'customerId',
+          'customerName',
+          'rating',
+          'text',
+          'createdAt',
+        ]);
+
+      allow update: if isAdmin()
+        || (
+          isApprovedOwner()
+          && resource.data.ownerId == request.auth.uid
+          && request.resource.data.ownerId == resource.data.ownerId
+          && request.resource.data.customerId == resource.data.customerId
+          && request.resource.data.customerName == resource.data.customerName
+          && request.resource.data.rating == resource.data.rating
+          && request.resource.data.text == resource.data.text
+        );
+
+      allow delete: if isAdmin();
+    }
+
+    // Support tickets / complaints (Admin → Reports & complaints).
+    match /platformReports/{reportId} {
+      allow read: if isAdmin()
+        || (
+          isApprovedOwner()
+          && resource.data.keys().hasAny(['targetOwnerUid'])
+          && resource.data.targetOwnerUid == request.auth.uid
+        );
+
+      allow create: if signedIn()
+        && request.resource.data.keys().hasAll([
+          'reporterUid',
+          'reporter',
+          'phone',
+          'issue',
+          'shop',
+          'priority',
+          'status',
+          'description',
+          'date',
+          'createdAt',
+          'updatedAt',
+        ])
+        && platformReportCore()
+        && (
+          isAdmin()
+          || (
+            request.resource.data.reporterUid == request.auth.uid
+            && request.resource.data.status == 'open'
+            && platformReportCustomerHasNoShopTarget()
+          )
+        );
+
+      allow update, delete: if isAdmin();
+    }
+  }
+}

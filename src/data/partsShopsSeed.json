@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Colombo Parts Hub",
+    "owner": "R. Fernando",
+    "phone": "+94 77 111 2233",
+    "email": "parts.hub.colombo@example.com",
+    "district": "Colombo",
+    "city": "Colombo 03",
+    "address": "Galle Rd, Colombo 03",
+    "parts": 240,
+    "orders": 18,
+    "revenueK": 420,
+    "stockLevel": "high",
+    "status": "active",
+    "established": "2019"
+  },
+  {
+    "name": "Jaffna Spares & Tools",
+    "owner": "K. Sivan",
+    "phone": "+94 21 222 3344",
+    "email": "jaffna.spares@example.com",
+    "district": "Jaffna",
+    "city": "Jaffna",
+    "address": "Hospital Rd, Jaffna",
+    "parts": 95,
+    "orders": 7,
+    "revenueK": 155,
+    "stockLevel": "medium",
+    "status": "pending",
+    "established": "2021"
+  },
+  {
+    "name": "Kandy Cycle Components",
+    "owner": "N. Perera",
+    "phone": "+94 81 333 4455",
+    "email": "kandy.components@example.com",
+    "district": "Kandy",
+    "city": "Kandy",
+    "address": "Peradeniya Rd, Kandy",
+    "parts": 412,
+    "orders": 32,
+    "revenueK": 890,
+    "stockLevel": "low",
+    "status": "active",
+    "established": "2017"
+  }
+]

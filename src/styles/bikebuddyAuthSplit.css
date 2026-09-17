@@ -1,0 +1,165 @@
+/* Legacy split cards — email check + reset password (from verify-password / Reset Password HTML) */
+.bbl-split-page * {
+  box-sizing: border-box;
+}
+.bbl-split-page {
+  min-height: 100vh;
+  background: linear-gradient(to right, #002f4b, #005f73);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+.bbl-split-page .bbl-container {
+  width: 100%;
+  max-width: 900px;
+  padding: 0;
+}
+.bbl-split-page .bbl-card {
+  background: #fff;
+  display: flex;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+.bbl-split-page .bbl-image-box {
+  width: 50%;
+  background: #f4f6f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  padding: 24px;
+}
+.bbl-split-page .bbl-image-box img {
+  max-width: 75%;
+  height: auto;
+}
+.bbl-split-page .bbl-image-fallback {
+  font-size: 100px;
+  line-height: 1;
+}
+.bbl-split-page .bbl-content-box,
+.bbl-split-page .bbl-form-box {
+  width: 50%;
+  padding: 40px;
+}
+.bbl-split-page .bbl-form-box {
+  padding: 45px;
+}
+.bbl-split-page h2 {
+  color: #2f7d6d;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+.bbl-split-page .bbl-form-box h2 {
+  color: #1f7a63;
+}
+.bbl-split-page .bbl-content-box p,
+.bbl-split-page .bbl-form-box p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.bbl-split-page .bbl-otp-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.bbl-split-page .bbl-otp-box input {
+  width: 45px;
+  height: 50px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.bbl-split-page .bbl-otp-box input:focus {
+  outline: none;
+  border-color: #2f7d6d;
+}
+.bbl-split-page .bbl-form-box label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 6px;
+  color: #333;
+}
+.bbl-split-page .bbl-form-box input[type='password'],
+.bbl-split-page .bbl-form-box input[type='text'] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  font: inherit;
+}
+.bbl-split-page .bbl-form-box input:focus {
+  outline: none;
+  border-color: #ffcc00;
+}
+.bbl-split-page button.bbl-primary {
+  width: 100%;
+  padding: 12px;
+  background: #ffcc00;
+  color: #121111;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.bbl-split-page button.bbl-primary:hover {
+  background: #e6b800;
+}
+.bbl-split-page .bbl-form-box button.bbl-primary:hover {
+  background: #16624f;
+  color: #fff;
+}
+.bbl-split-page .bbl-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.bbl-split-page .bbl-links a {
+  font-size: 13px;
+  color: #2f7d6d;
+  text-decoration: none;
+}
+.bbl-split-page .bbl-links a:hover {
+  text-decoration: underline;
+}
+.bbl-split-page .bbl-back {
+  text-align: center;
+  margin-top: 12px;
+}
+.bbl-split-page .bbl-back a {
+  color: #005f73;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.bbl-split-page .bbl-hint {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 12px;
+}
+@media (max-width: 768px) {
+  .bbl-split-page .bbl-card {
+    flex-direction: column;
+  }
+  .bbl-split-page .bbl-image-box,
+  .bbl-split-page .bbl-content-box,
+  .bbl-split-page .bbl-form-box {
+    width: 100%;
+  }
+  .bbl-split-page .bbl-image-box img {
+    max-width: 60%;
+  }
+}

@@ -1,0 +1,693 @@
+/* Users management — teal accents + orange CTAs (aligned with Parts / Sale / Service admin) */
+.bb-admin-users {
+  --au-primary: #14b8a6;
+  --au-primary-dark: #0d9488;
+  --au-primary-light: #5eead4;
+  --au-secondary: #06b6d4;
+  --au-cta: #f97316;
+  --au-cta-dark: #ea580c;
+  --au-success: #22c55e;
+  --au-danger: #ef4444;
+  --au-warning: #f59e0b;
+  --au-info: #3b82f6;
+  --au-dark: #0f172a;
+  --au-light: #f8fafc;
+  --au-border: #e2e8f0;
+  font-family: 'Nunito', 'Outfit', system-ui, sans-serif;
+}
+
+.bb-admin-users * {
+  box-sizing: border-box;
+}
+
+.bb-admin-users .au-hd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 0 20px;
+  margin: -4px 0 20px;
+  border-bottom: 1px solid var(--au-border);
+}
+.bb-admin-users .au-hl {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 22px;
+  min-width: 220px;
+}
+.bb-admin-users .au-ht {
+  font-size: 27px;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, var(--au-primary), var(--au-primary-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.bb-admin-users .au-search {
+  position: relative;
+  flex: 1;
+  max-width: 450px;
+}
+.bb-admin-users .au-search input {
+  width: 100%;
+  padding: 12px 16px 12px 48px;
+  border: 2px solid var(--au-border);
+  border-radius: 14px;
+  font-size: 15px;
+  font-family: inherit;
+}
+.bb-admin-users .au-search input:focus {
+  border-color: var(--au-primary);
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.1);
+  outline: none;
+}
+.bb-admin-users .au-si {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+.bb-admin-users .au-hr {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.bb-admin-users .au-add {
+  background: linear-gradient(135deg, var(--au-cta), var(--au-cta-dark));
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.32);
+}
+.bb-admin-users .au-add:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+}
+.bb-admin-users .au-add:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+.bb-admin-users .au-add.au-add--refreshing .au-refresh-icon {
+  display: inline-block;
+  animation: au-refresh-spin 0.65s linear infinite;
+}
+@keyframes au-refresh-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.bb-admin-users .au-bell {
+  position: relative;
+  background: var(--au-light);
+  border: 2px solid var(--au-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 19px;
+  cursor: pointer;
+}
+.bb-admin-users .au-bell:hover {
+  border-color: var(--au-primary);
+}
+.bb-admin-users .au-bb {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: var(--au-danger);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  animation: au-ping 2s ease-in-out infinite;
+}
+@keyframes au-ping {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+.bb-admin-users .au-av {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--au-primary), var(--au-secondary));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 17px;
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25);
+}
+
+.bb-admin-users .au-hero {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  padding: 40px 40px 44px;
+  border-radius: 24px;
+  color: #fff;
+  margin-bottom: 26px;
+  box-shadow: 0 20px 50px rgba(20, 184, 166, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+.bb-admin-users .au-hero::after {
+  content: '👥';
+  position: absolute;
+  right: -4%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-8deg);
+  font-size: 120px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+.bb-admin-users .au-hero-in {
+  position: relative;
+  z-index: 1;
+}
+.bb-admin-users .au-ht2 {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+@media (min-width: 900px) {
+  .bb-admin-users .au-ht2 {
+    font-size: 40px;
+  }
+}
+.bb-admin-users .au-hsub {
+  font-size: 16px;
+  opacity: 0.95;
+  line-height: 1.5;
+  max-width: 720px;
+  margin: 0;
+}
+
+.bb-admin-users .au-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin-bottom: 26px;
+}
+.bb-admin-users .au-st {
+  background: #fff;
+  border-radius: 20px;
+  padding: 22px 20px;
+  border: 2px solid var(--au-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.bb-admin-users .au-st::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--au-primary), var(--au-secondary));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.bb-admin-users .au-st:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(20, 184, 166, 0.15);
+  border-color: var(--au-primary-light);
+}
+.bb-admin-users .au-st:hover::before {
+  opacity: 1;
+}
+.bb-admin-users .au-ic2 {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+.bb-admin-users .au-ic2.tl {
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
+  color: #fff;
+}
+.bb-admin-users .au-ic2.em {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+}
+.bb-admin-users .au-ic2.cy {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  color: #fff;
+}
+.bb-admin-users .au-ic2.am {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+}
+.bb-admin-users .au-ic2.bl {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+}
+.bb-admin-users .au-ic2.ro {
+  background: linear-gradient(135deg, #f43f5e, #e11d48);
+  color: #fff;
+}
+.bb-admin-users .au-snum {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--au-dark);
+  font-family: 'Source Code Pro', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+.bb-admin-users .au-slbl {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 2px;
+}
+.bb-admin-users .au-str {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--au-success);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.bb-admin-users .au-str.n {
+  color: #64748b;
+}
+
+.bb-admin-users .au-sec {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+.bb-admin-users .au-sh {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.bb-admin-users .au-sti {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--au-dark);
+  margin: 0;
+}
+.bb-admin-users .au-bt {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.bb-admin-users .au-b2 {
+  background: var(--au-light);
+  border: 2px solid var(--au-border);
+  color: var(--au-dark);
+}
+.bb-admin-users .au-b2:hover {
+  border-color: var(--au-cta);
+}
+.bb-admin-users .au-b1 {
+  background: linear-gradient(135deg, var(--au-cta), var(--au-cta-dark));
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.32);
+}
+.bb-admin-users .au-b1:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.38);
+}
+.bb-admin-users .au-b1:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.bb-admin-users .au-fil {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.05), rgba(6, 182, 212, 0.05));
+  border: 2px solid rgba(20, 184, 166, 0.12);
+  border-radius: 16px;
+  align-items: end;
+}
+.bb-admin-users .au-fg {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.bb-admin-users .au-fl {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--au-dark);
+}
+.bb-admin-users .au-fi,
+.bb-admin-users .au-fs {
+  padding: 10px 12px;
+  border: 2px solid var(--au-border);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+}
+.bb-admin-users .au-fi:focus,
+.bb-admin-users .au-fs:focus {
+  border-color: var(--au-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.bb-admin-users .au-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 24px;
+}
+.bb-admin-users .au-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid var(--au-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: 0.3s;
+  position: relative;
+}
+.bb-admin-users .au-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.04), rgba(6, 182, 212, 0.04));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.bb-admin-users .au-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(20, 184, 166, 0.16);
+  border-color: var(--au-primary);
+}
+.bb-admin-users .au-card:hover::after {
+  opacity: 1;
+}
+.bb-admin-users .au-uh {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  color: #fff;
+  padding: 24px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.bb-admin-users .au-ava {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 12px;
+  background: #fff;
+  color: var(--au-primary);
+  font-weight: 800;
+  font-size: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.bb-admin-users .au-un {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+.bb-admin-users .au-ue {
+  font-size: 14px;
+  opacity: 0.9;
+  margin: 0;
+  word-break: break-all;
+}
+.bb-admin-users .au-ub {
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+.bb-admin-users .au-igrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.bb-admin-users .au-ir {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--au-light);
+  border-radius: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.bb-admin-users .au-ilb {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+}
+.bb-admin-users .au-iv {
+  font-size: 14px;
+  color: var(--au-dark);
+  font-weight: 700;
+  text-align: right;
+  word-break: break-all;
+}
+.bb-admin-users .au-ur {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.bb-admin-users .au-ur.admin {
+  background: #fef3c7;
+  color: #b45309;
+}
+.bb-admin-users .au-ur.customer {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.bb-admin-users .au-ur.shop-owner {
+  background: #f3e8ff;
+  color: #7e22ce;
+}
+.bb-admin-users .au-us {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.bb-admin-users .au-us.active {
+  background: #d1fae5;
+  color: #047857;
+}
+.bb-admin-users .au-us.inactive {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.bb-admin-users .au-us.suspended {
+  background: #fef3c7;
+  color: #b45309;
+}
+.bb-admin-users .au-act {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 4px;
+}
+@media (min-width: 500px) {
+  .bb-admin-users .au-act {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.bb-admin-users .au-act .au-bt {
+  font-size: 12px;
+  padding: 10px 4px;
+  justify-content: center;
+}
+.bb-admin-users .au-bv {
+  background: var(--au-info);
+  color: #fff;
+  border: none;
+}
+.bb-admin-users .au-be {
+  background: var(--au-success);
+  color: #fff;
+  border: none;
+}
+.bb-admin-users .au-bs {
+  background: var(--au-warning);
+  color: #fff;
+  border: none;
+}
+.bb-admin-users .au-bd {
+  background: var(--au-danger);
+  color: #fff;
+  border: none;
+}
+.bb-admin-users .au-bv:hover,
+.bb-admin-users .au-be:hover,
+.bb-admin-users .au-bs:hover,
+.bb-admin-users .au-bd:hover {
+  filter: brightness(1.05);
+}
+
+.bb-admin-users .au-empty {
+  text-align: center;
+  padding: 48px 16px;
+  grid-column: 1 / -1;
+}
+.bb-admin-users .au-ei {
+  font-size: 56px;
+  opacity: 0.4;
+  margin-bottom: 8px;
+}
+.bb-admin-users .au-et {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--au-dark);
+}
+.bb-admin-users .au-ep {
+  color: #64748b;
+  margin: 6px 0 18px;
+  font-size: 15px;
+}
+
+/* Modal */
+.bb-admin-users .au-md-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(6px);
+}
+.bb-admin-users .au-md {
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 22px;
+  padding: 32px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+.bb-admin-users .au-mh {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--au-light);
+}
+.bb-admin-users .au-mt {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--au-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.bb-admin-users .au-x {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--au-light);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  color: #64748b;
+}
+.bb-admin-users .au-x:hover {
+  background: #fee2e2;
+  color: var(--au-danger);
+}
+.bb-admin-users .au-fg2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 700px) {
+  .bb-admin-users .au-fg2 {
+    grid-template-columns: 1fr;
+  }
+}
+.bb-admin-users .au-fg2 .full {
+  grid-column: 1 / -1;
+}
+.bb-admin-users .au-ffg .lab {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #334155;
+  margin-bottom: 4px;
+}
+.bb-admin-users .au-ffg .inp {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--au-border);
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+}
+.bb-admin-users .au-ffg .inp:focus {
+  border-color: var(--au-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+.bb-admin-users .au-mf {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}

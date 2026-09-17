@@ -1,0 +1,65 @@
+{
+  "bikes": [
+    {
+      "title": "Aurora Carbon Road Bike",
+      "description": "Lightweight carbon frame with Shimano 105 groupset. Perfect for weekend centuries and fast club rides. Demo listing.",
+      "price": 2499,
+      "category": "Road",
+      "location": "Demo City · North Service Hub",
+      "image": "https://picsum.photos/seed/bikeroad1/960/720"
+    },
+    {
+      "title": "Trailforge 29\" MTB",
+      "description": "Air fork, dropper post, and tubeless-ready wheels for technical singletrack. Demo listing.",
+      "price": 1899,
+      "category": "Mountain",
+      "location": "Demo City · Trail Center",
+      "image": "https://picsum.photos/seed/bikemtb2/960/720"
+    },
+    {
+      "title": "Urban Glide Commuter",
+      "description": "Gates belt drive, integrated lights, and puncture-resistant tires for daily city miles. Demo listing.",
+      "price": 1299,
+      "category": "City",
+      "location": "Demo City · Downtown",
+      "image": "https://picsum.photos/seed/bikecity3/960/720"
+    }
+  ],
+  "accessories": [
+    {
+      "title": "Lumen Pro Helmet",
+      "description": "MIPS liner, magnetic buckle, and large vents for hot days. Demo listing.",
+      "price": 129,
+      "category": "Safety",
+      "image": "https://picsum.photos/seed/gearhelmet1/960/720"
+    },
+    {
+      "title": "Cargo Rack + Pannier Set",
+      "description": "Aluminum rack with waterproof roll-top bags—25L each. Demo listing.",
+      "price": 189,
+      "category": "Cargo",
+      "image": "https://picsum.photos/seed/gearrack2/960/720"
+    },
+    {
+      "title": "NightBeam USB Light Set",
+      "description": "800-lumen front, 60-lumen rear, USB-C charging. Demo listing.",
+      "price": 79,
+      "category": "Lights",
+      "image": "https://picsum.photos/seed/gearlight3/960/720"
+    }
+  ],
+  "services": [
+    {
+      "name": "Premium Tune-Up",
+      "description": "Adjust brakes and shifting, true wheels, clean drivetrain, safety check. Demo service.",
+      "durationMinutes": 90,
+      "price": 120
+    },
+    {
+      "name": "Tubeless Tire Setup",
+      "description": "Tape, sealant, and pressure optimization for road or gravel wheels. Demo service.",
+      "durationMinutes": 60,
+      "price": 85
+    }
+  ]
+}

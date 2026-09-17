@@ -1,0 +1,37 @@
+rules_version = '2';
+// **Bike listing images** are NOT stored in Firebase Storage — they are saved on your app
+// server (`public/uploads/bikes/` via Vite or PHP) and only the public URL is kept in Firestore.
+// This file still allows shop logos, part uploads, etc. under shops/{ownerId}/… when you use Storage.
+// Firestore: see firestore.rules (match /bikes/{bikeId}).
+// Deploy: firebase deploy --only storage
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /shops/{ownerId}/{allPaths=**} {
+      allow read: if true;
+
+      allow create, update: if request.auth != null
+        && request.auth.uid == ownerId
+        && request.resource != null
+        && request.resource.size < 6 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+
+      // Deletes do not have request.resource (per Firebase docs)
+      allow delete: if request.auth != null
+        && request.auth.uid == ownerId;
+    }
+
+    // Customer profile avatars (signed-in user may only write their own folder)
+    match /users/{userId}/{allPaths=**} {
+      allow read: if true;
+
+      allow create, update: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource != null
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+
+      allow delete: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

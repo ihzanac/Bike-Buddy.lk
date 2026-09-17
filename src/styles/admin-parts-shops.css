@@ -1,0 +1,711 @@
+/* Parts Shops — purple accents + Sale Shops–style orange CTAs (.pp-add / .pp-hero / .pp-b1) */
+.bb-parts-shops {
+  /* Match admin-sale-shops / .ss-quick-add primary actions */
+  --pp-cta: #f97316;
+  --pp-cta-dark: #ea580c;
+  --pp-primary: #8b5cf6;
+  --pp-primary-dark: #7c3aed;
+  --pp-primary-light: #c4b5fd;
+  --pp-secondary: #ec4899;
+  --pp-success: #10b981;
+  --pp-danger: #ef4444;
+  --pp-info: #06b6d4;
+  --pp-dark: #0f172a;
+  --pp-light: #f8fafc;
+  --pp-border: #e2e8f0;
+  font-family: 'Rubik', 'Outfit', system-ui, sans-serif;
+}
+
+.bb-parts-shops * {
+  box-sizing: border-box;
+}
+
+.bb-parts-shops .pp-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 0 20px;
+  margin: -4px 0 20px;
+  border-bottom: 1px solid var(--pp-border);
+}
+.bb-parts-shops .pp-hl {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 22px;
+  min-width: 220px;
+}
+.bb-parts-shops .pp-ht {
+  font-size: 27px;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, var(--pp-primary), var(--pp-primary-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.bb-parts-shops .pp-search {
+  position: relative;
+  flex: 1;
+  max-width: 450px;
+}
+.bb-parts-shops .pp-search input {
+  width: 100%;
+  padding: 12px 16px 12px 48px;
+  border: 2px solid var(--pp-border);
+  border-radius: 14px;
+  font-size: 15px;
+  font-family: inherit;
+}
+.bb-parts-shops .pp-search input:focus {
+  border-color: var(--pp-primary);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+  outline: none;
+}
+.bb-parts-shops .pp-si {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+.bb-parts-shops .pp-hr {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.bb-parts-shops .pp-add {
+  background: linear-gradient(135deg, var(--pp-cta), var(--pp-cta-dark));
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.32);
+}
+.bb-parts-shops .pp-add:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+}
+.bb-parts-shops .pp-add:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+.bb-parts-shops .pp-add.pp-add--refreshing .pp-refresh-icon {
+  display: inline-block;
+  animation: pp-refresh-spin 0.65s linear infinite;
+}
+@keyframes pp-refresh-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.bb-parts-shops .pp-bell {
+  position: relative;
+  background: var(--pp-light);
+  border: 2px solid var(--pp-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 19px;
+  cursor: pointer;
+}
+.bb-parts-shops .pp-bell:hover {
+  border-color: var(--pp-primary);
+}
+.bb-parts-shops .pp-bb {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: var(--pp-danger);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  animation: pp-pulse 2s ease-in-out infinite;
+}
+@keyframes pp-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Hero — same orange band as .bb-sale-shops .sl-hero */
+.bb-parts-shops .pp-hero {
+  background: linear-gradient(135deg, var(--pp-cta) 0%, var(--pp-cta-dark) 100%);
+  padding: 40px 44px;
+  border-radius: 24px;
+  color: #fff;
+  margin-bottom: 28px;
+  box-shadow: 0 20px 50px rgba(249, 115, 22, 0.28);
+  position: relative;
+  overflow: hidden;
+}
+.bb-parts-shops .pp-hero::after {
+  content: '📦';
+  position: absolute;
+  right: -8%;
+  top: 50%;
+  transform: translateY(-50%) rotate(12deg);
+  font-size: 140px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.bb-parts-shops .pp-hero-in {
+  position: relative;
+  z-index: 1;
+}
+.bb-parts-shops .pp-ht2 {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.bb-parts-shops .pp-ht2 .pp-ht2-ic {
+  font-size: 1.1em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+@media (min-width: 900px) {
+  .bb-parts-shops .pp-ht2 {
+    font-size: 40px;
+  }
+}
+.bb-parts-shops .pp-hsub {
+  font-size: 16px;
+  opacity: 0.95;
+  line-height: 1.5;
+  max-width: 720px;
+  margin: 0;
+}
+.bb-parts-shops .pp-hcode {
+  font-size: 0.88em;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.08);
+  font-weight: 600;
+}
+
+/* Stats 6 */
+.bb-parts-shops .pp-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin-bottom: 26px;
+}
+.bb-parts-shops .pp-st {
+  background: #fff;
+  border-radius: 20px;
+  padding: 22px 20px;
+  border: 2px solid var(--pp-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.bb-parts-shops .pp-st::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--pp-primary), var(--pp-secondary));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.bb-parts-shops .pp-st:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(139, 92, 246, 0.15);
+  border-color: var(--pp-primary-light);
+}
+.bb-parts-shops .pp-st:hover::before {
+  opacity: 1;
+}
+.bb-parts-shops .pp-sic {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+.bb-parts-shops .pp-sic.pu {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: #fff;
+}
+.bb-parts-shops .pp-sic.gr {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+}
+.bb-parts-shops .pp-sic.cy {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  color: #fff;
+}
+.bb-parts-shops .pp-sic.pi {
+  background: linear-gradient(135deg, #ec4899, #db2777);
+  color: #fff;
+}
+.bb-parts-shops .pp-sic.am {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+}
+.bb-parts-shops .pp-sic.re {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+}
+.bb-parts-shops .pp-snum {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--pp-dark);
+  font-variant-numeric: tabular-nums;
+}
+.bb-parts-shops .pp-slbl {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  margin-top: 2px;
+}
+.bb-parts-shops .pp-str {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pp-success);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.bb-parts-shops .pp-str.m {
+  color: #64748b;
+}
+
+/* Section */
+.bb-parts-shops .pp-sec {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+.bb-parts-shops .pp-sh {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.bb-parts-shops .pp-sti {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--pp-dark);
+  margin: 0;
+}
+.bb-parts-shops .pp-bt {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.bb-parts-shops .pp-b2 {
+  background: var(--pp-light);
+  border: 2px solid var(--pp-border);
+  color: var(--pp-dark);
+}
+.bb-parts-shops .pp-b2:hover {
+  border-color: var(--pp-primary);
+}
+.bb-parts-shops .pp-b1 {
+  background: linear-gradient(135deg, var(--pp-cta), var(--pp-cta-dark));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35);
+}
+.bb-parts-shops .pp-b1:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.38);
+}
+.bb-parts-shops .pp-b1:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Filters */
+.bb-parts-shops .pp-fil {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.04), rgba(236, 72, 153, 0.04));
+  border: 2px solid rgba(139, 92, 246, 0.12);
+  border-radius: 16px;
+  align-items: end;
+}
+.bb-parts-shops .pp-fg {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.bb-parts-shops .pp-fl {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--pp-dark);
+}
+.bb-parts-shops .pp-fi,
+.bb-parts-shops .pp-fs {
+  padding: 10px 12px;
+  border: 2px solid var(--pp-border);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+}
+.bb-parts-shops .pp-fi:focus,
+.bb-parts-shops .pp-fs:focus {
+  border-color: var(--pp-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+/* Grid + cards */
+.bb-parts-shops .pp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+.bb-parts-shops .pp-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid var(--pp-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: 0.3s;
+  position: relative;
+}
+.bb-parts-shops .pp-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.04), rgba(236, 72, 153, 0.04));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.bb-parts-shops .pp-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(139, 92, 246, 0.18);
+  border-color: var(--pp-primary);
+}
+.bb-parts-shops .pp-card:hover::after {
+  opacity: 1;
+}
+.bb-parts-shops .pp-crh {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  color: #fff;
+  padding: 24px 20px;
+  position: relative;
+  z-index: 1;
+}
+.bb-parts-shops .pp-cn {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+.bb-parts-shops .pp-ca {
+  font-size: 14px;
+  opacity: 0.92;
+  margin: 0;
+}
+.bb-parts-shops .pp-cb {
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+.bb-parts-shops .pp-sta {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.bb-parts-shops .pp-sta.active {
+  background: #d1fae5;
+  color: #047857;
+}
+.bb-parts-shops .pp-sta.inactive {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.bb-parts-shops .pp-sta.pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+.bb-parts-shops .pp-stk {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.bb-parts-shops .pp-stk.high {
+  background: #d1fae5;
+  color: #047857;
+}
+.bb-parts-shops .pp-stk.medium {
+  background: #fef3c7;
+  color: #b45309;
+}
+.bb-parts-shops .pp-stk.low {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.bb-parts-shops .pp-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.bb-parts-shops .pp-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  background: var(--pp-light);
+  border-radius: 10px;
+}
+.bb-parts-shops .pp-ic {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.bb-parts-shops .pp-rl {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.bb-parts-shops .pp-rv {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--pp-dark);
+  word-break: break-word;
+}
+.bb-parts-shops .pp-mini {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  text-align: center;
+  margin-bottom: 12px;
+  padding: 14px 6px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.08));
+  border-radius: 12px;
+  border: 1px solid rgba(139, 92, 246, 0.12);
+}
+.bb-parts-shops .pp-mn {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--pp-primary);
+  font-variant-numeric: tabular-nums;
+  display: block;
+}
+.bb-parts-shops .pp-ms {
+  font-size: 9px;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  display: block;
+}
+.bb-parts-shops .pp-act {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+.bb-parts-shops .pp-act .pp-bt {
+  font-size: 12px;
+  padding: 9px 4px;
+  justify-content: center;
+}
+.bb-parts-shops .pp-bv {
+  background: var(--pp-info);
+  color: #fff;
+  border: none;
+}
+.bb-parts-shops .pp-be {
+  background: var(--pp-success);
+  color: #fff;
+  border: none;
+}
+.bb-parts-shops .pp-bd {
+  background: var(--pp-danger);
+  color: #fff;
+  border: none;
+}
+.bb-parts-shops .pp-bd:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.bb-parts-shops .pp-empty {
+  text-align: center;
+  padding: 48px 16px;
+  grid-column: 1 / -1;
+}
+.bb-parts-shops .pp-ei {
+  font-size: 56px;
+  opacity: 0.4;
+  margin-bottom: 8px;
+}
+.bb-parts-shops .pp-et {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--pp-dark);
+}
+.bb-parts-shops .pp-ep {
+  color: #64748b;
+  margin: 6px 0 18px;
+  font-size: 15px;
+}
+
+/* Modal */
+.bb-parts-shops .pp-mod-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(6px);
+}
+.bb-parts-shops .pp-mod {
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 22px;
+  padding: 32px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+.bb-parts-shops .pp-mh {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--pp-light);
+}
+.bb-parts-shops .pp-mt {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--pp-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.bb-parts-shops .pp-x {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--pp-light);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  color: #64748b;
+}
+.bb-parts-shops .pp-x:hover {
+  background: #fee2e2;
+  color: var(--pp-danger);
+}
+.bb-parts-shops .pp-fgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 700px) {
+  .bb-parts-shops .pp-fgrid {
+    grid-template-columns: 1fr;
+  }
+}
+.bb-parts-shops .pp-fgrid .full {
+  grid-column: 1 / -1;
+}
+.bb-parts-shops .pp-ffg .lab {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #334155;
+  margin-bottom: 4px;
+}
+.bb-parts-shops .pp-ffg .inp {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--pp-border);
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+}
+.bb-parts-shops .pp-ffg .inp:focus,
+.bb-parts-shops .pp-ffg textarea.inp:focus {
+  border-color: var(--pp-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+.bb-parts-shops .pp-ffg textarea.inp {
+  min-height: 80px;
+  resize: vertical;
+}
+.bb-parts-shops .pp-mf {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}

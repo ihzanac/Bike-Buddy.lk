@@ -1,0 +1,932 @@
+/* Shop owner — bike inventory (HTML mock: vibrant cards, stats, modals). Scoped to .sbi-page */
+
+.sbi-page {
+  --sbi-primary: #ff6b35;
+  --sbi-primary-dark: #e85a28;
+  --sbi-secondary: #3498db;
+  --sbi-dark: #2c3e50;
+  --sbi-success: #27ae60;
+  --sbi-warning: #f39c12;
+  --sbi-danger: #e74c3c;
+  --sbi-light: #f8f9fa;
+  --sbi-gray: #95a5a6;
+  --sbi-white: #fff;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--sbi-dark);
+  animation: sbi-fade-in 0.5s ease;
+}
+
+.sbi-page h1,
+.sbi-page h2,
+.sbi-page h3 {
+  font-family: 'Rajdhani', 'Exo 2', system-ui, sans-serif;
+  font-weight: 700;
+}
+
+@keyframes sbi-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.sbi-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.88) 100%);
+  backdrop-filter: blur(10px);
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.sbi-hero h1 {
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  background: linear-gradient(135deg, var(--sbi-primary), var(--sbi-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.4rem;
+}
+
+.sbi-hero h1 i {
+  -webkit-text-fill-color: var(--sbi-primary);
+}
+
+.sbi-btn-add {
+  padding: 0.8rem 1.6rem;
+  background: var(--sbi-primary);
+  color: var(--sbi-white);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+  transition: transform 0.2s ease, background 0.2s;
+}
+
+.sbi-btn-add:hover:not(:disabled) {
+  background: var(--sbi-primary-dark);
+  transform: translateY(-1px);
+}
+
+.sbi-btn-add:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.sbi-help {
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+  max-width: 48rem;
+}
+
+.sbi-help code {
+  font-size: 0.85em;
+  background: #f1f5f9;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+.sbi-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: linear-gradient(135deg, var(--sbi-warning), #e67e22);
+  color: var(--sbi-white);
+  padding: 0.9rem 1.1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.sbi-alert i {
+  font-size: 1.4rem;
+}
+
+.sbi-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.sbi-stat {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-left: 4px solid var(--sbi-primary);
+  transition: transform 0.2s ease, box-shadow 0.2s;
+}
+
+.sbi-stat--blue {
+  border-left-color: var(--sbi-secondary);
+}
+.sbi-stat--green {
+  border-left-color: var(--sbi-success);
+}
+.sbi-stat--orange {
+  border-left-color: var(--sbi-warning);
+}
+.sbi-stat--red {
+  border-left-color: var(--sbi-danger);
+}
+
+.sbi-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+}
+
+.sbi-stat-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--sbi-gray);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.sbi-stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  font-family: 'Rajdhani', 'Exo 2', system-ui, sans-serif;
+  color: var(--sbi-dark);
+}
+
+.sbi-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  align-items: center;
+}
+
+.sbi-search {
+  flex: 1 1 14rem;
+  min-width: 0;
+  position: relative;
+}
+
+.sbi-search input {
+  width: 100%;
+  padding: 0.65rem 2.2rem 0.65rem 0.8rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font: inherit;
+}
+
+.sbi-search i {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--sbi-gray);
+}
+
+.sbi-select {
+  padding: 0.65rem 0.8rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  min-width: 8rem;
+  font: inherit;
+  background: #fff;
+  cursor: pointer;
+}
+
+.sbi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.sbi-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.sbi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.sbi-card-img {
+  height: 200px;
+  background: linear-gradient(135deg, var(--sbi-primary), var(--sbi-secondary));
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.sbi-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sbi-card-img i {
+  font-size: 3.2rem;
+}
+
+.sbi-card-badge {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+  backdrop-filter: blur(6px);
+}
+
+.sbi-card-badge--ok {
+  background: rgba(39, 174, 96, 0.9);
+}
+.sbi-card-badge--low {
+  background: rgba(243, 156, 18, 0.95);
+}
+.sbi-card-badge--out {
+  background: rgba(231, 76, 60, 0.9);
+}
+
+.sbi-card-body {
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.sbi-card-brand {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--sbi-primary);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+}
+
+.sbi-card-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--sbi-dark);
+  margin-bottom: 0.65rem;
+  line-height: 1.2;
+}
+
+.sbi-card-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem 0.75rem;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+
+.sbi-card-specs span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sbi-card-specs i {
+  color: var(--sbi-primary);
+  width: 0.9rem;
+  text-align: center;
+  font-size: 0.78rem;
+}
+
+.sbi-spec-block {
+  background: var(--sbi-light);
+  border-radius: 10px;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.78rem;
+}
+
+.sbi-spec-block h4 {
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--sbi-dark);
+  font-weight: 700;
+}
+
+.sbi-spec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.sbi-spec-item small {
+  display: block;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  color: #94a3b8;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.sbi-spec-item b {
+  font-size: 0.78rem;
+  color: #1e293b;
+}
+
+.sbi-prices {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e8ecf1;
+  border-bottom: 1px solid #e8ecf1;
+  padding: 0.6rem 0;
+  margin-bottom: 0.6rem;
+  text-align: center;
+}
+
+.sbi-prices small {
+  display: block;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 0.1rem;
+}
+
+.sbi-prices b {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sbi-primary);
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.sbi-prices b.sbi-muted {
+  color: #94a3b8;
+  font-size: 0.78rem;
+}
+
+.sbi-prices b.sbi-profit {
+  color: var(--sbi-success);
+  font-size: 0.78rem;
+}
+
+.sbi-stock-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--sbi-light);
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  font-size: 0.82rem;
+}
+
+.sbi-stock-val {
+  font-weight: 700;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.sbi-stock-val--good {
+  color: var(--sbi-success);
+}
+.sbi-stock-val--low {
+  color: var(--sbi-warning);
+}
+.sbi-stock-val--out {
+  color: var(--sbi-danger);
+}
+
+.sbi-card-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.sbi-ia {
+  padding: 0.5rem 0.35rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  font-family: inherit;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.sbi-ia:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+.sbi-ia:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.sbi-ia--v {
+  background: var(--sbi-secondary);
+}
+.sbi-ia--e {
+  background: var(--sbi-success);
+}
+.sbi-ia--d {
+  background: var(--sbi-danger);
+}
+
+.sbi-ia-full {
+  grid-column: 1 / -1;
+  background: var(--sbi-warning);
+}
+
+.sbi-empty {
+  text-align: center;
+  color: #64748b;
+  padding: 2.5rem 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 14px;
+  border: 1px dashed #cbd5e1;
+}
+
+.sbi-err {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre-line;
+  margin-bottom: 1rem;
+}
+
+/* Modals (above sidebar) */
+.sbi-m-back {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.sbi-m {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 46rem;
+  width: 100%;
+  max-height: min(92vh, 900px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+  animation: sbi-m-in 0.3s ease;
+}
+
+.sbi-m--wide {
+  max-width: 56rem;
+}
+
+@keyframes sbi-m-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.sbi-m-h {
+  background: linear-gradient(135deg, var(--sbi-primary), var(--sbi-primary-dark));
+  color: #fff;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.sbi-m-h h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.sbi-m-x {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sbi-m-x:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.sbi-m-body {
+  padding: 1.1rem 1.2rem 1.25rem;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.sbi-m-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem 1rem;
+}
+
+.sbi-m-grid .sbi-m-fw {
+  grid-column: 1 / -1;
+}
+
+.sbi-m-field label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.25rem;
+}
+
+.sbi-m-field label .sbi-req {
+  color: var(--sbi-danger);
+}
+
+.sbi-m-field input,
+.sbi-m-field select,
+.sbi-m-field textarea {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.sbi-m-field input:focus,
+.sbi-m-field select:focus,
+.sbi-m-field textarea:focus {
+  outline: none;
+  border-color: var(--sbi-primary);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.12);
+}
+
+.sbi-m-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e8ecf1;
+}
+
+.sbi-m-bt,
+.sbi-m-bt-s {
+  padding: 0.65rem 1.1rem;
+  border-radius: 9px;
+  font-weight: 600;
+  font: inherit;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  flex: 1;
+  min-width: 7rem;
+}
+
+.sbi-m-bt {
+  background: var(--sbi-primary);
+  color: #fff;
+}
+
+.sbi-m-bt:hover:not(:disabled) {
+  background: var(--sbi-primary-dark);
+}
+
+.sbi-m-bt-s {
+  background: #f1f5f9;
+  color: #334155;
+  border: 2px solid #e2e8f0;
+  flex: 0 0 auto;
+}
+
+.sbi-m-bt:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sbi-m-imgrow {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1rem;
+  padding: 0.9rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e8ecf1;
+}
+
+.sbi-m-prev {
+  width: 120px;
+  height: 120px;
+  border: 2px dashed #e0e0e0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #fff;
+}
+
+.sbi-m-prev.has-img {
+  border-style: solid;
+  border-color: #86efac;
+}
+
+.sbi-m-prev img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sbi-m-prev i {
+  font-size: 2.2rem;
+  color: #94a3b8;
+}
+
+.sbi-m-upload-btns {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+  margin-bottom: 0.25rem;
+}
+
+.sbi-m-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.85rem;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.sbi-m-btn:hover:not(:disabled) {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+.sbi-m-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.sbi-m-btn--blue {
+  background: var(--sbi-secondary, #3498db);
+  color: #fff;
+}
+
+.sbi-m-btn--red {
+  background: var(--sbi-danger, #e74c3c);
+  color: #fff;
+}
+
+.sbi-m-hint {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0.25rem 0 0;
+  line-height: 1.35;
+}
+
+@media (max-width: 600px) {
+  .sbi-m-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sbi-m-imgrow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sbi-sec {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 500;
+  margin: 0.4rem 0 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid #e8ecf1;
+}
+
+.sbi-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+  font-size: 0.86rem;
+}
+
+.sbi-d-item {
+  background: #f8fafc;
+  border-left: 3px solid var(--sbi-primary);
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+}
+
+.sbi-d-l {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  color: #94a3b8;
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+.sbi-d-v {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.sbi-cb {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.86rem;
+  color: #475569;
+  cursor: pointer;
+}
+
+.sbi-cb input {
+  width: auto;
+}
+
+.sbi-addl-notes {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.sbi-addl-notes__title {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #92400e;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sbi-addl-notes__text {
+  margin: 0;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  color: #1e293b;
+}
+
+.sbi-color-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sbi-color-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sbi-color-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #e2e8f0;
+  flex-shrink: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.sbi-color-name {
+  flex: 1;
+  min-width: 8rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.sbi-color-pick {
+  width: 44px;
+  height: 36px;
+  padding: 2px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.sbi-color-hex {
+  width: 6.5rem;
+  padding: 0.45rem 0.5rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-family: ui-monospace, monospace;
+  font-size: 0.85rem;
+}
+
+.sbi-color-rm {
+  border: none;
+  background: #fee2e2;
+  color: #b91c1c;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sbi-color-rm:hover {
+  background: #fecaca;
+}
+
+.sbi-color-add {
+  align-self: flex-start;
+  margin-top: 0.15rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  border: 1px dashed #94a3b8;
+  background: #f8fafc;
+  border-radius: 8px;
+  color: #475569;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sbi-color-add:hover {
+  background: #f1f5f9;
+  border-color: #64748b;
+}
+
+@media (max-width: 600px) {
+  .sbi-card-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,62 @@
+/* Public home — motion-safe extras (works with framer-motion on the page) */
+@media (prefers-reduced-motion: reduce) {
+  .bb-landing-pulse-dot {
+    animation: none;
+  }
+}
+
+.bb-landing-pulse-dot {
+  animation: bb-landing-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes bb-landing-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(0.92);
+  }
+}
+
+.bb-brand-marquee {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: max-content;
+  animation: bb-brand-scroll 24s linear infinite;
+}
+
+.bb-brand-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgb(226 232 240 / 1);
+  background: rgb(255 255 255 / 0.92);
+  color: rgb(30 41 59 / 1);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+@keyframes bb-brand-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-brand-marquee {
+    animation: none;
+    flex-wrap: wrap;
+    min-width: auto;
+  }
+}

@@ -1,0 +1,701 @@
+/* Unified auth theme — dark glass style aligned with public pages */
+.bbl-auth-page * {
+  box-sizing: border-box;
+}
+
+.bbl-auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(59, 130, 246, 0.25), transparent 62%),
+    linear-gradient(to bottom, rgba(2, 6, 23, 0.66), rgba(2, 6, 23, 0.82)),
+    url('https://mototech.ch/media-assets/thumb/images/_imageTextColumnImage/Ducati-Panigale-2024-rot.webp?v=1776771627')
+      center / cover no-repeat,
+    linear-gradient(to bottom, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.98)),
+    #020617;
+}
+
+.bbl-auth-page.bbl-auth-page--register {
+  background:
+    radial-gradient(circle at 15% 12%, rgba(30, 58, 138, 0.58), transparent 42%),
+    linear-gradient(135deg, #022a59 0%, #035f73 100%);
+}
+
+/* Reused on customer auth + shop owner auth (import bikebuddyAuth.css) */
+.bbl-auth-back {
+  width: 100%;
+  max-width: 520px;
+  min-height: 48px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Glass pill — obvious tap target on any gradient */
+.bbl-auth-back a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.65rem 1.35rem 0.65rem 1.1rem;
+  width: max-content;
+  max-width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #e2e8f0;
+  text-decoration: none;
+  background: rgba(15, 23, 42, 0.62);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 0 0 1px rgba(148, 163, 184, 0.12),
+    0 12px 30px rgba(2, 6, 23, 0.38);
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.bbl-auth-back a:hover {
+  color: #f8fafc;
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(125, 211, 252, 0.45);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 0 0 1px rgba(56, 189, 248, 0.22),
+    0 16px 34px rgba(2, 6, 23, 0.45);
+  transform: translateY(-2px);
+}
+
+.bbl-auth-back a:active {
+  transform: translateY(0);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 0 0 1px rgba(21, 122, 82, 0.15),
+    0 3px 12px rgba(0, 30, 50, 0.14);
+}
+
+.bbl-auth-back a:focus-visible {
+  outline: 3px solid #7dd3fc;
+  outline-offset: 3px;
+}
+
+.bbl-auth-back-icon {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+  line-height: 1;
+  border-radius: 9999px;
+  background: linear-gradient(145deg, rgba(59, 130, 246, 0.24), rgba(2, 132, 199, 0.14));
+  border: 1px solid rgba(125, 211, 252, 0.24);
+}
+
+.bbl-auth-page .login-container,
+.bbl-auth-page .register-container,
+.bbl-auth-page .forgot-container {
+  width: 100%;
+  max-width: 450px;
+}
+
+.bbl-auth-page .login-box,
+.bbl-auth-page .register-box,
+.bbl-auth-page .forgot-box {
+  background:
+    linear-gradient(165deg, rgba(30, 41, 59, 0.62) 0%, rgba(15, 23, 42, 0.56) 100%),
+    rgba(15, 23, 42, 0.54);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 0 0 1px rgba(125, 211, 252, 0.08),
+    0 24px 50px rgba(2, 6, 23, 0.58);
+}
+
+.bbl-auth-page .register-box,
+.bbl-auth-page .forgot-box {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.bbl-auth-page .login-box h2,
+.bbl-auth-page .register-box h2,
+.bbl-auth-page .forgot-box h2 {
+  text-align: center;
+  margin: 0 0 6px;
+  font-size: 1.75rem;
+  letter-spacing: 0.01em;
+  color: #f8fafc;
+}
+
+.bbl-auth-page .login-box p,
+.bbl-auth-page .register-box > p,
+.bbl-auth-page .forgot-box p {
+  text-align: center;
+  color: #cbd5e1;
+  margin: 0 0 22px;
+}
+
+.bbl-auth-page .input-group {
+  margin-bottom: 15px;
+}
+
+.bbl-auth-page .input-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #e2e8f0;
+}
+
+.bbl-auth-page .input-group input,
+.bbl-auth-page .register-box input,
+.bbl-auth-page .forgot-box input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(2, 6, 23, 0.5);
+  color: #f8fafc;
+  font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.bbl-auth-page .input-group input:focus,
+.bbl-auth-page .register-box input:focus,
+.bbl-auth-page .forgot-box input:focus {
+  outline: none;
+  border-color: rgba(125, 211, 252, 0.75);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+  background: rgba(2, 6, 23, 0.62);
+}
+
+.bbl-auth-page .input-group input::placeholder,
+.bbl-auth-page .register-box input::placeholder,
+.bbl-auth-page .forgot-box input::placeholder {
+  color: #94a3b8;
+}
+
+.bbl-auth-page .bbl-password-wrap {
+  position: relative;
+}
+
+.bbl-auth-page .bbl-password-wrap input {
+  padding-right: 44px;
+}
+
+.bbl-auth-page .bbl-password-toggle {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 16px;
+  color: #cbd5e1;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.bbl-auth-page .bbl-password-toggle:hover {
+  background: rgba(56, 189, 248, 0.16);
+}
+
+.bbl-auth-page .register-box input {
+  margin-top: 10px;
+}
+
+.bbl-auth-page .error {
+  display: block;
+  color: #fca5a5;
+  font-size: 12px;
+  min-height: 1em;
+  margin-top: 4px;
+}
+
+.bbl-auth-page button[type='submit'] {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  border: 1px solid rgba(125, 211, 252, 0.35);
+  border-radius: 5px;
+  color: #eff6ff;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  font: inherit;
+  box-shadow: 0 12px 24px rgba(2, 132, 199, 0.28);
+}
+
+.bbl-auth-page .register-box > button,
+.bbl-auth-page .forgot-box > form button,
+.bbl-auth-page .forgot-box button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  border: 1px solid rgba(125, 211, 252, 0.35);
+  border-radius: 5px;
+  color: #eff6ff;
+  font-weight: 700;
+  cursor: pointer;
+  font: inherit;
+  box-shadow: 0 12px 24px rgba(2, 132, 199, 0.28);
+}
+
+.bbl-auth-page .register-box button {
+  margin-top: 15px;
+}
+
+.bbl-auth-page button[type='submit']:hover,
+.bbl-auth-page .register-box > button:hover,
+.bbl-auth-page .forgot-box button:hover {
+  filter: brightness(1.08);
+}
+
+.bbl-auth-page .extra-links,
+.bbl-auth-page .login-link,
+.bbl-auth-page .bbl-aux-links,
+.bbl-auth-page .back-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.bbl-auth-page .extra-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.bbl-auth-page .extra-links span {
+  color: #94a3b8;
+}
+
+.bbl-auth-page .bbl-aux-links {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.bbl-auth-page .extra-links a,
+.bbl-auth-page .login-link a,
+.bbl-auth-page .back-link a,
+.bbl-auth-page .bbl-aux-links a {
+  text-decoration: none;
+  color: #7dd3fc;
+}
+.bbl-auth-page .bbl-aux-links a:hover,
+.bbl-auth-page .extra-links a:hover,
+.bbl-auth-page .login-link a:hover,
+.bbl-auth-page .back-link a:hover {
+  text-decoration: underline;
+}
+.bbl-auth-page .bbl-aux-back {
+  text-align: center;
+  margin-top: 8px;
+}
+.bbl-auth-page .bbl-aux-back a {
+  color: #7dd3fc;
+  font-size: 14px;
+  text-decoration: none;
+}
+.bbl-auth-page .bbl-aux-back a:hover {
+  text-decoration: underline;
+}
+
+/* Customer login card — classic light style like reference */
+.bbl-auth-page .login-box {
+  background: #f8f8f8;
+  border: 1px solid #d9d9d9;
+  border-radius: 14px;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+}
+
+.bbl-auth-page .login-box h2 {
+  color: #1f2937;
+  font-size: 2rem;
+}
+
+.bbl-auth-page .login-box > p {
+  color: #6b7280;
+}
+
+.bbl-auth-page .login-box .input-group label {
+  color: #374151;
+  font-weight: 600;
+}
+
+.bbl-auth-page .login-box .input-group input {
+  border: 1px solid #d4d4d8;
+  background: #ffffff;
+  color: #111827;
+  border-radius: 10px;
+}
+
+.bbl-auth-page .login-box .input-group input:focus {
+  border-color: #9ca3af;
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.22);
+  background: #ffffff;
+}
+
+.bbl-auth-page .login-box .input-group input::placeholder {
+  color: #9ca3af;
+}
+
+.bbl-auth-page .login-box .bbl-password-toggle {
+  color: #4b5563;
+}
+
+.bbl-auth-page .login-box .error {
+  color: #dc2626;
+}
+
+.bbl-auth-page .login-box button[type='submit'] {
+  background: #facc15;
+  border: 1px solid #eab308;
+  color: #111827;
+  border-radius: 10px;
+  box-shadow: none;
+  font-weight: 700;
+}
+
+.bbl-auth-page .login-box button[type='submit']:hover {
+  filter: brightness(0.98);
+}
+
+.bbl-auth-page .login-box .extra-links a,
+.bbl-auth-page .login-box .bbl-aux-links a {
+  color: #0e7490;
+}
+
+.bbl-auth-page .login-box .extra-links span,
+.bbl-auth-page .login-box .bbl-aux-links {
+  color: #6b7280;
+}
+
+/* Customer register card — classic light style like reference */
+.bbl-auth-page .register-box {
+  background: #f8f8f8;
+  border: 1px solid #d9d9d9;
+  border-radius: 14px;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+}
+
+.bbl-auth-page .register-box h2 {
+  color: #1f2937;
+  font-size: 2rem;
+}
+
+.bbl-auth-page .register-box > p,
+.bbl-auth-page .register-box .login-link {
+  color: #6b7280;
+}
+
+.bbl-auth-page .register-box .input-group label {
+  color: #374151;
+  font-weight: 600;
+}
+
+.bbl-auth-page .register-box input {
+  border: 1px solid #d4d4d8;
+  background: #ffffff;
+  color: #111827;
+  border-radius: 10px;
+}
+
+.bbl-auth-page .register-box input:focus {
+  outline: none;
+  border-color: #9ca3af;
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.22);
+  background: #ffffff;
+}
+
+.bbl-auth-page .register-box input::placeholder {
+  color: #9ca3af;
+}
+
+.bbl-auth-page .register-box .error {
+  color: #dc2626;
+}
+
+.bbl-auth-page .register-box > button,
+.bbl-auth-page .register-box button[type='submit'] {
+  background: #facc15;
+  border: 1px solid #eab308;
+  color: #111827;
+  border-radius: 10px;
+  box-shadow: none;
+  font-weight: 700;
+}
+
+.bbl-auth-page .register-box > button:hover,
+.bbl-auth-page .register-box button[type='submit']:hover {
+  filter: brightness(0.98);
+}
+
+.bbl-auth-page .register-box .login-link a {
+  color: #0e7490;
+}
+
+/* Login hub — choose customer / admin / shop */
+.bbl-login-select-wrap {
+  width: 100%;
+  max-width: 520px;
+}
+
+.bbl-login-select-head {
+  text-align: center;
+  margin-bottom: 22px;
+  color: #fff;
+}
+
+.bbl-login-select-head h1 {
+  margin: 0 0 8px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #f8fafc;
+}
+
+.bbl-login-select-head p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #cbd5e1;
+  max-width: 36em;
+  margin-inline: auto;
+}
+
+.bbl-login-select-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bbl-login-select-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background:
+    linear-gradient(160deg, rgba(30, 41, 59, 0.52) 0%, rgba(15, 23, 42, 0.5) 100%),
+    rgba(15, 23, 42, 0.48);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 16px 36px rgba(2, 6, 23, 0.45);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.bbl-login-select-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(125, 211, 252, 0.52);
+  background:
+    linear-gradient(160deg, rgba(51, 65, 85, 0.62) 0%, rgba(30, 41, 59, 0.6) 100%),
+    rgba(15, 23, 42, 0.56);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 20px 42px rgba(2, 6, 23, 0.55);
+}
+
+.bbl-login-select-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.22), rgba(59, 130, 246, 0.18));
+  border-radius: 12px;
+  border: 1px solid rgba(125, 211, 252, 0.3);
+}
+
+.bbl-login-select-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.bbl-login-select-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.bbl-login-select-desc {
+  font-size: 13px;
+  line-height: 1.35;
+  color: #cbd5e1;
+}
+
+.bbl-login-select-arrow {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #7dd3fc;
+  text-shadow: 0 0 12px rgba(125, 211, 252, 0.35);
+}
+
+.bbl-login-select-footer {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+.bbl-login-select-footer a {
+  color: #7dd3fc;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.bbl-login-select-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Classic customer auth theme (match provided HTML/CSS templates) */
+.bbl-auth-page {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #002f4b, #005f73);
+}
+
+.bbl-auth-page.bbl-auth-page--register {
+  background: linear-gradient(to right, #002f4b, #005f73);
+}
+
+.bbl-auth-page.bbl-auth-page--login-select {
+  background:
+    linear-gradient(to bottom, rgba(2, 6, 23, 0.6), rgba(2, 6, 23, 0.76)),
+    url('https://mototech.ch/media-assets/thumb/images/_imageTextColumnImage/Ducati-Panigale-2024-rot.webp?v=1776771627')
+      center / cover no-repeat;
+}
+
+.bbl-auth-page .login-container,
+.bbl-auth-page .register-container,
+.bbl-auth-page .forgot-container {
+  max-width: 420px;
+}
+
+.bbl-auth-page .forgot-box {
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.bbl-auth-page .forgot-box h2 {
+  color: #111827;
+}
+
+.bbl-auth-page .forgot-box p {
+  color: #555;
+}
+
+.bbl-auth-page .forgot-box .input-group label {
+  color: #111827;
+  text-align: left;
+}
+
+.bbl-auth-page .forgot-box .input-group input {
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #111827;
+  border-radius: 5px;
+}
+
+.bbl-auth-page .forgot-box .error {
+  color: red;
+}
+
+.bbl-auth-page .forgot-box button[type='submit'] {
+  background: #ffcc00;
+  border: none;
+  color: #111;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.bbl-auth-page .forgot-box button[type='submit']:hover {
+  background: #e6b800;
+  filter: none;
+}
+
+.bbl-auth-page .forgot-box .back-link a {
+  color: #1f4037;
+  font-weight: 700;
+}
+
+.bbl-login-select-head h1 {
+  color: #fff;
+}
+
+.bbl-login-select-head p {
+  color: #b8e0ff;
+}
+
+.bbl-login-select-card {
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+.bbl-login-select-card:hover {
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+}
+
+.bbl-login-select-icon {
+  background: linear-gradient(135deg, #e8f7f2, #d4efe4);
+  border: 1px solid #b8dcc8;
+}
+
+.bbl-login-select-title {
+  color: #002f4b;
+}
+
+.bbl-login-select-desc {
+  color: #555;
+}
+
+.bbl-login-select-arrow {
+  color: #005f73;
+  text-shadow: none;
+}

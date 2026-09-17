@@ -1,0 +1,214 @@
+/* Shop owner login / register — BikeBuddy.lk (teal / mint palette from static mockups) */
+.shop-auth-page * {
+  box-sizing: border-box;
+}
+
+.shop-auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.shop-auth-page--login {
+  background: linear-gradient(135deg, #1f3240, #99f2c8);
+}
+
+.shop-auth-page--register {
+  background: linear-gradient(135deg, #1f3240, #203a43, #2c5364);
+}
+
+/* Back control: use `bbl-auth-back` + `bikebuddyAuth.css` on shop login/register pages */
+
+.shop-auth-page .shop-login-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.shop-auth-page .shop-register-container {
+  width: 100%;
+  max-width: 520px;
+}
+
+.shop-auth-page .shop-login-card,
+.shop-auth-page .shop-register-card {
+  background: #ffffff;
+  padding: 35px 30px;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.shop-auth-page .shop-register-card {
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  text-align: left;
+}
+
+.shop-auth-page .shop-login-card h2,
+.shop-auth-page .shop-register-card h2 {
+  margin-bottom: 10px;
+  color: #1f4037;
+}
+
+.shop-auth-page .shop-register-card h2 {
+  text-align: center;
+  color: #0f2027;
+}
+
+.shop-auth-page .shop-login-card > p,
+.shop-auth-page .shop-register-card > p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.shop-auth-page .shop-register-card > p {
+  text-align: center;
+}
+
+.shop-auth-page .shop-register-card h4 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #203a43;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  font-size: 15px;
+}
+
+.shop-auth-page .shop-input-group {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.shop-auth-page .shop-register-card .shop-input-group {
+  margin-bottom: 15px;
+}
+
+.shop-auth-page .shop-input-group label {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.shop-auth-page .shop-input-group input,
+.shop-auth-page .shop-input-group select,
+.shop-auth-page .shop-input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 15px;
+}
+
+.shop-auth-page .shop-password-wrap {
+  position: relative;
+}
+
+.shop-auth-page .shop-password-wrap input {
+  padding-right: 44px;
+}
+
+.shop-auth-page .shop-password-toggle {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.shop-auth-page .shop-password-toggle:hover {
+  background: rgba(31, 64, 55, 0.08);
+}
+
+.shop-auth-page .shop-input-group textarea {
+  resize: none;
+  height: 80px;
+}
+
+.shop-auth-page .shop-input-group input:focus,
+.shop-auth-page .shop-input-group select:focus,
+.shop-auth-page .shop-input-group textarea:focus {
+  border-color: #1f4037;
+}
+
+.shop-auth-page .shop-register-card .shop-input-group input:focus,
+.shop-auth-page .shop-register-card .shop-input-group select:focus,
+.shop-auth-page .shop-register-card .shop-input-group textarea:focus {
+  border-color: #203a43;
+}
+
+.shop-auth-page button[type='submit'] {
+  width: 100%;
+  padding: 12px 13px;
+  background: #1f4037;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.shop-auth-page .shop-register-card button[type='submit'] {
+  background: #203a43;
+  margin-top: 15px;
+  padding: 13px;
+}
+
+.shop-auth-page button[type='submit']:hover:not(:disabled) {
+  background: #16352d;
+}
+
+.shop-auth-page .shop-register-card button[type='submit']:hover:not(:disabled) {
+  background: #162a33;
+}
+
+.shop-auth-page button[type='submit']:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.shop-auth-page .shop-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.shop-auth-page .shop-register-card .shop-links {
+  text-align: center;
+}
+
+.shop-auth-page .shop-links a {
+  font-size: 13px;
+  text-decoration: none;
+  color: #1f4037;
+}
+
+.shop-auth-page .shop-register-card .shop-links a {
+  color: #203a43;
+}
+
+.shop-auth-page .shop-links a:hover {
+  text-decoration: underline;
+}
+
+.shop-auth-page .shop-error {
+  display: block;
+  color: #c0392b;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
