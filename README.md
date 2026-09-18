@@ -1,159 +1,645 @@
-# Bike Service & Marketplace System
+🏍️ BikeBuddy.lk – AI-Powered Motorcycle Service Management System
 
-Modern web app for browsing bikes and accessories, booking service appointments, and managing shop inventory with role-based access (customer, approved shop owner, admin).
+<p align="center">
+  <img src="https://img.shields.io/badge/AI-Powered-Motorcycle%20Platform-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Frontend-Next.js%20%7C%20JavaScript-black?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Backend-Firebase-orange?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Database-Firebase%20Firestore-yellow?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Maps-Google%20Maps%20API-green?style=for-the-badge">
+</p><p align="center">
+  <b>AI-Powered Motorcycle Service & Marketplace Platform</b>
+  <br>
+  A modern web-based platform connecting bike owners, service centres, bike sellers, and spare-parts vendors in Sri Lanka.
+</p>---
 
-## Stack
+🌟 System Overview
 
-- React + TypeScript + Vite
-- Tailwind CSS v4 (`@tailwindcss/vite`)
-- React Router
-- Firebase Authentication, Firestore, Storage
-- React Hook Form + Zod + Sonner toasts
+BikeBuddy.lk is a web-based and AI-enabled motorcycle service management platform designed to simplify motorcycle servicing, spare-parts discovery, bike sales, and service booking.
 
-**New to Firebase?** Use the walkthrough: **[Firebase setup (step by step)](docs/FIREBASE_STEP_BY_STEP.md)**.
+The system connects bike owners, service providers, and spare-parts vendors through a centralized digital ecosystem.
 
-## Getting started
+BikeBuddy.lk helps users:
 
-```bash
+- 🏍️ Discover motorcycles
+- 🔧 Find motorcycle service centres
+- 📅 Book bike services online
+- 🗺️ Find nearby shops using Google Maps
+- 🛠️ Search for motorcycle spare parts
+- 🛒 Browse bike parts and accessories
+- 💰 Explore motorcycles for sale
+- 📋 Manage service bookings and history
+- 🤖 Use AI-powered assistance
+- 🔍 Search intelligently with spelling correction
+
+The system is designed to improve convenience, transparency, service management, and digital transformation within Sri Lanka's motorcycle service industry.
+
+---
+
+🎯 System Objectives
+
+Goal| Description
+💻 Digital Transformation| Replace manual motorcycle service processes with a centralized digital platform
+📅 Online Booking| Allow customers to find and book motorcycle services online
+🗺️ Location Discovery| Help users find nearby service centres and shops using Google Maps
+🛠️ Spare Parts Management| Provide digital spare-parts searching and management
+🏍️ Bike Marketplace| Allow shop owners to list motorcycles for sale
+🤖 AI Assistance| Provide intelligent search, recommendations, and motorcycle assistance
+📊 Centralized Management| Provide administrators with centralized system management
+📱 Responsive Experience| Support desktop, tablet, and mobile devices
+
+---
+
+🚀 Main Features
+
+👤 Customer Portal
+
+The customer portal allows motorcycle owners to access motorcycle-related services through a single platform.
+
+Features:
+
+- 🔐 Customer registration and login
+- 📧 Email verification
+- 🔑 Forgot password and password reset
+- 🏠 Customer dashboard
+- 🔧 Browse bike services
+- 📅 Online service booking
+- 🏍️ Browse motorcycles for sale
+- 🛠️ Browse motorcycle spare parts
+- 🛒 Add parts to cart
+- 📋 View booking history
+- 📝 Report a problem
+- 👤 Manage profile
+- 🔔 Notifications
+- 🤖 AI Assistant
+- 🔍 AI-powered search
+- ⚖️ AI Bike Comparison
+- 🚪 Secure logout
+
+---
+
+👨‍💼 Administrator Portal
+
+The Admin Portal provides centralized control over the BikeBuddy.lk platform.
+
+Features:
+
+- 🔐 Admin login
+- 📝 Admin registration
+- 📊 Admin dashboard
+- 🏪 Service shop management
+- 🏍️ Bike sale shop management
+- 🛠️ Bike parts shop management
+- 👥 User management
+- 📅 Booking management
+- 🔧 Service booking management
+- 📈 Reports management
+- ⚙️ System settings
+- 🔔 Notification settings
+- 🔒 Security settings
+- 🎨 Theme settings
+- 🗑️ Manage inactive or incorrect records
+
+---
+
+🏪 Shop Owner Portal
+
+The Shop Owner Portal allows service providers and vendors to manage their businesses digitally.
+
+Features:
+
+- 🔐 Shop owner login
+- 📝 Shop owner registration
+- 📊 Shop owner dashboard
+- 📅 Booking management
+- 🔧 Service management
+- 🏪 Shop profile management
+- ⭐ Customer feedback management
+- 🛠️ Bike parts management
+- ➕ Add new bike parts
+- 🏍️ Bike sale management
+- ➕ Add new motorcycles
+- 📦 Inventory management
+- 🔔 Notifications
+- ⚠️ Low-stock alerts
+
+---
+
+🔧 Bike Service Management
+
+BikeBuddy.lk provides a centralized service management system for motorcycle service centres.
+
+Features:
+
+- 🏪 Service centre listings
+- 🔧 Service category management
+- 💰 Service pricing
+- 📅 Online service booking
+- 📋 Booking management
+- 📍 Location-based service discovery
+- 🗺️ Google Maps integration
+- ⭐ Customer feedback
+- 📊 Service information management
+
+Customers can discover nearby service centres and book available services through the platform.
+
+---
+
+🏍️ Bike Sale Module
+
+The Bike Sale module allows shop owners to list motorcycles for customers.
+
+Features:
+
+- 🏍️ Motorcycle listings
+- 🏷️ Brand and model information
+- 📅 Manufacturing year
+- 🎨 Bike colour
+- ⚙️ Engine CC
+- 💰 Purchase price
+- 💵 Selling price
+- 📦 Stock quantity
+- 🔧 Chassis number
+- 🔧 Engine number
+- 🚚 Supplier information
+- 🖼️ Bike images
+- 📍 Shop location
+
+Shop owners can View, Edit, Delete, and manage stock for motorcycle listings.
+
+---
+
+🛠️ Bike Parts & Accessories
+
+BikeBuddy.lk provides a digital marketplace for motorcycle spare parts and accessories.
+
+Features:
+
+- 🛠️ Spare-parts listings
+- 🏷️ Part name and category
+- 🏭 Brand information
+- 💰 Price management
+- 📦 Stock availability
+- 🔍 Search and filtering
+- 🛒 Shopping cart
+- 📍 Parts shop locations
+- 🖼️ Product images
+- 🔔 Low-stock notifications
+
+---
+
+🗺️ Google Maps Integration
+
+The system integrates the Google Maps API to help customers discover motorcycle-related businesses.
+
+Features:
+
+- 📍 Display service centre locations
+- 🏪 Display bike sale shops
+- 🛠️ Display parts shops
+- 🔎 Find nearby providers
+- 🧭 Location-based discovery
+- 🚗 Navigation support
+
+This allows customers to easily locate motorcycle service providers and shops.
+
+---
+
+🤖 Artificial Intelligence
+
+BikeBuddy.lk includes AI-powered features designed to improve search, recommendations, and user interaction.
+
+The system provides intelligent assistance for motorcycle discovery, service information, bike comparisons, and spare-parts searching.
+
+---
+
+💬 AI BikeBuddy Assistant
+
+The AI Assistant provides an interactive interface where users can ask questions related to motorcycles and platform services.
+
+Capabilities:
+
+- 🏍️ Motorcycle recommendations
+- 🔧 Service-related assistance
+- 🛠️ Spare-parts assistance
+- 🔎 Intelligent search
+- 📍 Nearby shop assistance
+- 💡 Bike suggestions
+- 💬 Natural-language interaction
+
+Example quick queries include:
+
+Bikes under 1M
+Near me
+Compare
+
+---
+
+🔍 AI Smart Search
+
+The Smart Search feature improves search accuracy by understanding incorrect or incomplete user input.
+
+For example:
+
+User Input:
+ktn dke
+
+AI Result:
+KTM Duke
+
+The system can correct spelling mistakes and provide relevant motorcycle, service, or spare-parts results.
+
+---
+
+⚖️ AI Bike Compare
+
+The AI Bike Comparison feature allows users to compare motorcycle models.
+
+Comparison includes:
+
+- 🏍️ Bike models
+- ⚙️ Engine displacement
+- 💰 Price
+- ⛽ Mileage
+- 📊 Performance information
+- 💎 Value comparison
+
+The feature helps users understand differences between motorcycle models through structured comparison.
+
+---
+
+🛠️ AI Bike Parts Assistant
+
+The AI Parts Assistant helps users search for motorcycle components.
+
+It can process queries and identify relevant:
+
+- 🛠️ Spare parts
+- 🏷️ Categories
+- 🏭 Brands
+- 💰 Prices
+- 🏪 Available shops
+- 📦 Inventory
+
+The assistant searches available shop inventory and returns relevant parts based on the user's query.
+
+---
+
+🗄️ Database
+
+BikeBuddy.lk uses Firebase Cloud Firestore as its cloud-based NoSQL database.
+
+The database stores information related to:
+
+Users
+Bookings
+Bikes
+Services
+Parts
+Accessories
+Parts Shops
+Service Shops
+Bike Sale Shops
+
+Firebase provides real-time data synchronization between the application and database.
+
+---
+
+🔐 Authentication & Security
+
+Firebase Authentication is used to manage user authentication.
+
+Security features include:
+
+- 🔐 Secure authentication
+- 👤 User access control
+- 🛡️ Role-based access
+- 🔑 Protected admin access
+- 🔒 Secure data communication
+- ✅ Input validation
+- 🔐 Firebase security rules
+- 🌐 HTTPS communication
+
+---
+
+🏗️ System Architecture
+
+BikeBuddy.lk follows a Three-Tier Architecture.
+
+                    👥 USERS
+                       |
+                       |
+              🌐 PRESENTATION LAYER
+                       |
+              Next.js / HTML / CSS
+                   JavaScript
+                       |
+                       ↓
+              ⚙️ APPLICATION LAYER
+                       |
+                    Firebase
+                       |
+          ┌────────────┼────────────┐
+          ↓            ↓            ↓
+    Authentication   Booking      APIs
+                       |
+                       ↓
+                 🗄️ DATA LAYER
+                       |
+             Firebase Firestore
+                       |
+       ┌───────────────┼───────────────┐
+       ↓               ↓               ↓
+     Users          Bookings          Bikes
+       ↓               ↓               ↓
+     Parts          Services       Accessories
+
+---
+
+🛠️ Technology Stack
+
+💻 Frontend
+
+<p>
+  <img src="https://skillicons.dev/icons?i=nextjs,react,html,css,javascript" height="45">
+</p>- Next.js
+- React
+- HTML5
+- CSS3
+- JavaScript
+- Responsive Web Design
+
+---
+
+🔥 Backend & Database
+
+<p>
+  <img src="https://skillicons.dev/icons?i=firebase" height="45">
+</p>- Firebase
+- Firebase Authentication
+- Firebase Cloud Firestore
+- Firebase Cloud Services
+- Real-time Data Synchronization
+
+---
+
+🗺️ APIs & Services
+
+- 🗺️ Google Maps API
+- 🤖 AI-powered search logic
+- 🔌 API integration
+- 📍 Location-based services
+
+---
+
+🧰 Development Tools
+
+<p>
+  <img src="https://skillicons.dev/icons?i=git,github,vscode" height="45">
+</p>Tools used:
+
+- Git
+- GitHub
+- Visual Studio Code
+- Firebase Console
+- Google Maps Platform
+- Browser Developer Tools
+- Figma
+- Draw.io
+
+---
+
+📂 Project Modules
+
+BikeBuddy.lk
+│
+├── 👤 Customer Module
+│   ├── Authentication
+│   ├── Dashboard
+│   ├── Service Booking
+│   ├── Bike Sale
+│   ├── Parts Shop
+│   ├── Cart
+│   ├── Profile
+│   └── Booking History
+│
+├── 👨‍💼 Admin Module
+│   ├── Dashboard
+│   ├── User Management
+│   ├── Service Shop
+│   ├── Bike Sale Shop
+│   ├── Parts Shop
+│   ├── Booking Management
+│   ├── Reports
+│   └── Settings
+│
+├── 🏪 Shop Owner Module
+│   ├── Dashboard
+│   ├── Booking
+│   ├── Service Management
+│   ├── Bike Parts
+│   ├── Bike Sale
+│   ├── Feedback
+│   ├── Notifications
+│   └── Profile
+│
+├── 🤖 AI Module
+│   ├── AI Chat Assistant
+│   ├── Smart Search
+│   ├── AI Bike Compare
+│   └── AI Parts Assistant
+│
+├── 🗺️ Google Maps Integration
+│
+├── 🔥 Firebase
+│   ├── Authentication
+│   └── Firestore Database
+│
+└── 📄 README.md
+
+---
+
+⚙️ System Requirements
+
+Software Requirements
+
+Windows 10 / 11
+macOS
+Linux
+
+Node.js
+npm
+Visual Studio Code
+Modern Web Browser
+Firebase Account
+Google Maps API
+
+---
+
+💻 Hardware Requirements
+
+Recommended development environment:
+
+Processor: Intel Core i3 or above
+RAM: 8 GB recommended
+Storage: 250 GB or above
+Internet: Stable Internet Connection
+Display: 15-inch or larger
+
+The web application can also be tested on smartphones and tablets with modern browsers.
+
+---
+
+📥 Installation
+
+1️⃣ Clone Repository
+
+git clone https://github.com/YOUR-USERNAME/BikeBuddy.lk.git
+
+---
+
+2️⃣ Navigate to Project
+
+cd BikeBuddy.lk
+
+---
+
+3️⃣ Install Dependencies
+
 npm install
-cp .env.example .env
-```
 
-Fill in Firebase web app keys from the Firebase console (Project settings → Your apps). Then:
+---
 
-```bash
+4️⃣ Configure Firebase
+
+Create a Firebase project and configure:
+
+Firebase Authentication
+Cloud Firestore
+Firebase Configuration
+Security Rules
+
+Add your Firebase configuration to the appropriate project configuration file.
+
+---
+
+5️⃣ Configure Google Maps
+
+Create a Google Maps API key and configure it in the project.
+
+Required configuration may include:
+
+Google Maps API Key
+Maps JavaScript API
+Places / Location Services
+
+---
+
+6️⃣ Run Development Server
+
 npm run dev
-```
 
-To verify **Firestore** (database) is reachable with your `.env` config:
+Open the application in your browser:
 
-```bash
-npm run check:firebase
-```
+http://localhost:3000
 
-You should see `OK — Firestore is reachable.` (it runs a tiny public read on the `bikes` collection).
+---
 
-### Demo login accounts (optional)
+🧪 Testing
 
-Fixed accounts for local testing (all use the same password **`DemoPass123!`**):
+The system was tested across major functional modules including:
 
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | `admin@bikehub.demo` | `DemoPass123!` |
-| Customer | `customer@bikehub.demo` | `DemoPass123!` |
-| Shop owner (approved) | `owner@bikehub.demo` | `DemoPass123!` |
+- 🔐 Admin login
+- ❌ Invalid login
+- 👥 User management
+- 🏪 Service centre management
+- ✏️ Edit service centre
+- 🗑️ Delete service centre
+- 📅 Booking management
+- 📊 Reports
+- 🚪 Admin logout
+- 👤 Customer authentication
+- 🏪 Shop owner functionality
 
-1. Deploy the latest [`firestore.rules`](firestore.rules) (includes a **demo-only** rule so `admin@bikehub.demo` can create an `admin` profile once).
-2. With `VITE_FIREBASE_*` set in `.env`, run:
+Testing was performed to verify system functionality, reliability, usability, and stability.
 
-```bash
-npm run bootstrap:demo-users
-```
+---
 
-That also **writes real Firestore documents** (bikes, accessories, services from [`src/data/demo-seed.json`](src/data/demo-seed.json)) for `owner@bikehub.demo` the first time the demo owner has no bikes yet.
+📈 Key Benefits
 
-3. Sign in at **`/login`** with any row above.
+👤 For Customers
 
-Re-run the command if you need to attach a missing Firestore profile to an existing Auth user. **Change or remove the `admin@bikehub.demo` rule before production** if you do not want that bootstrap path.
+- Easy service booking
+- Find nearby service centres
+- Search motorcycle parts
+- Explore motorcycles for sale
+- Compare bikes
+- AI-powered assistance
+- Digital booking management
 
-#### `auth/configuration-not-found` when running `bootstrap:demo-users`
+🏪 For Shop Owners
 
-That comes from the **Identity Toolkit** (Auth) REST call, not from this repo’s script logic. Fix it by:
+- Manage services
+- Manage motorcycle listings
+- Manage spare parts
+- Manage inventory
+- Manage bookings
+- Receive notifications
+- View customer feedback
 
-1. **Firebase Console → Authentication:** open **Authentication** for this project, then **Sign-in method** → enable **Email/Password**.
-2. **Google Cloud Console → APIs & Services → Credentials:** open the **Browser key** that matches `VITE_FIREBASE_API_KEY`. If **Application restrictions** is set to **HTTP referrers**, Node.js has no referrer, so Auth fails. For local scripts use **None** (dev only), or **IP addresses** with your machine’s IP, or a **separate** key without referrer restrictions for CLI use.
-3. **`.env`:** no quotes/spaces mistakes; `authDomain` should look like `your-project-id.firebaseapp.com` and match **Project settings → Your apps → Web**.
+👨‍💼 For Administrators
 
-The bootstrap script prints the same hints when it catches this error.
+- Centralized management
+- User management
+- Shop management
+- Booking management
+- Reports and analytics
+- System monitoring
+- Security management
 
-### Demo data (optional)
+---
 
-- **Browse-only demos (no writes):** set `VITE_DEMO_DATA=true` in `.env` and restart the dev server. The app prepends sample bikes, accessories, and services (from [`src/data/demo-seed.json`](src/data/demo-seed.json)) for the landing page and public catalog. Demo services cannot be booked; sample booking cards appear on **Bookings** when you have none yet.
-- **Real Firestore seed:** add `SEED_OWNER_EMAIL` / `SEED_OWNER_PASSWORD` for an **approved** shop owner, then run:
+🔮 Future Enhancements
 
-```bash
-npm run seed:firestore
-```
+Planned future improvements include:
 
-That creates the same items as real documents owned by that account (bookable with a customer account).
+- 💳 Online payment integration
+- 📱 Dedicated mobile application
+- 🤖 Advanced AI recommendations
+- 📍 Real-time service tracking
+- 🔔 Real-time notifications
+- 📊 Advanced analytics
+- ☁️ Cloud deployment improvements
+- 🧠 More intelligent motorcycle recommendations
 
-## Firebase setup
+---
 
-The app cannot create your Firebase project or read your secrets automatically. You still need to create the project in the console and paste web config into `.env`. After that, this repo can deploy **rules and indexes** for you via the Firebase CLI.
+👨‍💻 Developer
 
-1. In [Firebase Console](https://console.firebase.google.com/), create a project and enable **Authentication** (Email/Password), **Firestore**, and **Storage**.
-2. Project settings → Your apps → Web app → copy config into `.env` (see `.env.example`).
-3. Link the CLI to that project:
-   - Edit [`.firebaserc`](.firebaserc) and set `default` to your **project ID**, **or** run `npm run firebase:use` and pick the project.
-   - One-time login: `npm run firebase:login` (opens the browser).
-4. Deploy rules and indexes from this repo:
+A.M. Ihzan
 
-```bash
-npm run firebase:deploy:rules
-```
+BEng (Hons) Software Engineering
 
-5. Optional: deploy the built site to Firebase Hosting:
+Software Engineer | Full-Stack Developer | AI Application Developer
 
-```bash
-npm run firebase:deploy:hosting
-```
+BikeBuddy.lk was developed as a final-year software engineering project focusing on motorcycle service management, digital marketplace functionality, AI-assisted search, and real-time cloud technologies.
 
-If you skip the CLI, you can still paste [`firestore.rules`](firestore.rules) and [`storage.rules`](storage.rules) in the console and add indexes from [`firestore.indexes.json`](firestore.indexes.json) (or use the “create index” links when a query fails).
+---
 
-## Bootstrap an admin user
+📜 Project Information
 
-There is no in-app promotion to `admin` (by design). After a user registers in Firebase Auth:
+Project: BikeBuddy.lk
+Project Type: Final Year Software Engineering Project
+Platform: Web Application
+Domain: Motorcycle Service & Marketplace
+Country: Sri Lanka
+Development Approach: Agile Methodology
 
-1. Create the matching Firestore document at `users/{uid}` (same `uid` as Authentication) **or** register normally and edit the document in the console.
-2. Set:
-   - `role: "admin"`
-   - `email`, `displayName`, `createdAt`, `updatedAt` as needed (`createdAt`/`updatedAt` can be timestamps).
+---
 
-Admins can approve pending shop owners from **Admin → Users**.
-
-## Scripts
-
-- `npm run dev` — start Vite dev server
-- `npm run build` — typecheck + production build
-- `npm run preview` — preview the production build
-
-## Customer forgot-password OTP (PHPMailer)
-
-Customer login is at `/login/customer`. Forgot-password now supports OTP by email via PHP + PHPMailer:
-
-1. Install mailer dependency on the PHP host (repo root):
-
-```bash
-composer require phpmailer/phpmailer
-```
-
-2. Configure PHP runtime env vars (SMTP + token secret), then expose:
-   - `public/api/customer-password-otp.php`
-3. Set client env in `.env`:
-   - `VITE_PASSWORD_OTP_API_PATH=/api/customer-password-otp.php`
-4. Set the same token secret in Firebase Functions and deploy functions:
-
-```bash
-firebase functions:secrets:set OTP_RESET_TOKEN_SECRET
-npm run firebase:deploy:functions
-```
-
-Flow: request OTP -> verify OTP (mail code) -> reset password. The reset write is completed by callable function `resetCustomerPasswordWithOtp` (Firebase Admin SDK).
-
-### Database (Firestore) from the terminal
-
-Firestore has no separate “build” or migration step: collections appear when documents are written. Use this order after `.env` is filled and **Authentication + Firestore** are enabled in the console:
-
-| Step | Command | What it does |
-|------|---------|----------------|
-| 1 | `npm run firebase:login` then `npm run firebase:use` (once) | Link Firebase CLI to your project (see `.firebaserc`). |
-| 2 | `npm run firebase:deploy:rules` | Publishes **`firestore.rules`**, **`firestore.indexes.json`**, and **`storage.rules`** to Firebase. |
-| 3 | `npm run check:firebase` | Sanity check: can the app config read Firestore (`bikes`)? |
-| 4 | `npm run bootstrap:demo-users` | Creates demo Auth users + profiles and seeds **bikes / accessories / services** from `demo-seed.json` for `owner@bikehub.demo` (first run). |
-| Alt | `npm run seed:firestore` | Same catalog seed, but signs in as **`SEED_OWNER_EMAIL`** / **`SEED_OWNER_PASSWORD`** (approved owner you already have). |
-
-Then `npm run dev` and sign in at **`/login`**. For browse-only sample rows without writing to Firestore, set `VITE_DEMO_DATA=true` in `.env` and restart the dev server.
-
-## Folder structure
-
-See `src/` for `components/`, `pages/`, `layouts/`, `services/`, `context/`, `routes/`, `utils/`, and `types/`.
+<p align="center">
+  🏍️ <b>BikeBuddy.lk</b>
+  <br>
+  Connecting Riders, Service Centres & Motorcycle Shops Through Technology
+  <br><br>
+  ⭐ Built with Next.js, Firebase, JavaScript, Google Maps & AI
+</p>
